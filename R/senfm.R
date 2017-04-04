@@ -1,13 +1,15 @@
-senfm <-
-function (y, treated1, gamma = 1, inner = 0, trim = 3, lambda = 1/2,
+senfm <- function (y, treated1, gamma = 1, inner = 0, trim = 3, lambda = 1/2,
               tau = 0, alternative="greater")
     {
-        stopifnot(is.logical(treated1))
-        stopifnot(inner>=0)
-        stopifnot(trim>=inner)
-        stopifnot((lambda>0)&(lambda<1))
-        stopifnot(gamma>=1)
         stopifnot((alternative=="greater")|(alternative=="less"))
+        stopifnot(is.logical(treated1))
+        stopifnot(gamma>=1)
+        stopifnot((inner>=0)&(inner<=trim))
+        stopifnot((lambda>0)&(lambda<1))
+        if(is.data.frame(y)) y<-as.matrix(y)
+        stopifnot(is.matrix(y))
+        stopifnot((dim(y)[1])==length(treated1))
+        stopifnot(all(!is.na(as.vector(y[,1:2]))))
         if (is.vector(y)) {
             y <- y[!is.na(y)]
             treat <- y/2

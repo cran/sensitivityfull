@@ -1,10 +1,10 @@
 \name{mscoref}
 \alias{mscoref}
 \title{
-Computes M-scores
+Computes M-scores for a Full Match
 }
 \description{
-Of limited interest to most users, mscoref computes the
+Of limited interest to most users, mscoref() computes the
 scores that form the basis for the hypothesis test
 performed by senfm.
 }
@@ -109,7 +109,7 @@ mscoref(y,treated1,qu=.9,trim=1) #trimming the outer 10 percent
 
 # For an additional example, install and load package sensitivitymv
 # The following example is a match with variable controls.
-# Both mscorev (in sensitivitymv) and mscoref (in sensitivityfull)
+# Both mscorev() (in sensitivitymv) and mscoref() (in sensitivityfull)
 # reproduce the example in Rosenbaum (2007, Table 3).
 # data(tbmetaphase)
 # mscorev(tbmetaphase,trim=1)

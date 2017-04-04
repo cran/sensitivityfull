@@ -5,7 +5,7 @@
 \concept{Observational study}
 \concept{Causal inference}
 \title{
-Sensitivity analysis for a full match in an observational study.
+Sensitivity Analysis for a Full Match in an Observational Study.
 }
 \description{
 In a full match, each matched set contains either one treated
@@ -13,7 +13,7 @@ individual and one or more controls or one control and one or
 more treated individuals.  Uses Huber's M-statistic as the basis for
 the test, for instance, a mean.  Performs either a randomization
 test or an analysis of sensitivity to departures from random
-assignment.
+assignment.  For confidence intervals, use function senfmCI().
 }
 \usage{
 senfm(y, treated1, gamma = 1, inner = 0, trim = 3, lambda = 1/2,
@@ -30,14 +30,8 @@ If matched set i contains one control and k>1 treated individuals, then y[i,1]
 is the control's response, y[i,2],...,y[i,k+1] are the responses of the k
 treated individuals, and y[i,k+2],...,y[i,J] are equal to NA.
 
-Exception: If y is a vector, not a matrix, then every matched set is understood
-to be a matched pair, one treated subject and one control, and y is understood
-to be a vector of I=length(y) matched pair differences, treated-minus-control.
-The same results would be produced by setting y equal to an I-by-2 matrix whose
-first column contains treated responses and whose second column contains control
-responses such that the difference between the first and second column equals
-the vector y.  For matched pairs, the package sensitivitymw does more, but
-sensitivityfull can be used.
+Although y can contain NA's, y[i,1] and y[i,2] must not be NA for every i.
+
 }
   \item{treated1}{
 The vector treated1 is a logical vector of length I,
@@ -93,10 +87,10 @@ discussion of two-sided sensitivity analyses.
   }
 }
 \details{
-For the given \eqn{\Gamma}, senfm computes the upper bound on the 1-sided
+For the given \eqn{\Gamma}, senfm() computes the upper bound on the 1-sided
 P-value testing the null hypothesis
 of an additive treatment effect tau against the alternative hypothesis of
-a treatment effect larger than tau.  By default, senfm tests the null hypothesis of
+a treatment effect larger than tau.  By default, senfm() tests the null hypothesis of
 no treatment effect against the alternative of a positive treatment effect.
 The P-value is an approximate P-value
 based on a Normal approximation to the null distribution; see Rosenbaum (2007).
@@ -165,7 +159,7 @@ to appear.
 Paul R. Rosenbaum.
 }
 \note{
-The function senfm performs 1-sided tests.  One approach
+The function senfm() performs 1-sided tests.  One approach
 to a 2-sided, \eqn{\alpha}-level test does both 1-sided tests
 at level \eqn{\alpha/2}, and rejects the null hypothesis if either
 1-sided
@@ -191,6 +185,11 @@ in sensitivityfull.  sensitivitymw is faster and computes confidence intervals
 and point estimates.  sensitivitymw also implements methods
 from Rosenbaum (2014).  sensitivity2x2xk is for 2x2xk contingency tables,
 treatment x outcome x covariates; see Rosenbaum and Small (2016).
+
+Rosenbaum (2007) describes the method for matching with variable
+numbers of controls, but only very minor adjustments are
+required for full matching, and senfm() implements these
+adjustments.
 }
 
 

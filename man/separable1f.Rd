@@ -1,12 +1,12 @@
 \name{separable1f}
 \alias{separable1f}
 \title{
-Computes the separable approximation.
+Computes the Separable Approximation.
 }
 \description{
-Of limited interest to most users, separable1f is called by
-the main function, senfm, in computing the sensitivity analysis.
-separable1f is given scores produced by mscoref and computes the
+Of limited interest to most users, separable1f() is called by
+the main function, senfm(), in computing the sensitivity analysis.
+separable1f() is given scores produced by mscoref() and computes the
 separable approximation to the upper bound on the P-value.
 }
 \usage{
